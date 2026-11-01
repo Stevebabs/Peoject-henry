@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b13">
+<title>HENRY | Personal Intelligence</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #080b13;
+  color: #eaf2ff;
+  font-family: Inter, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #202a3b;
+  padding: 12px 0 20px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #a8d9ff;
+}
+
+.status {
+  color: #65e6b3;
+  font-size: 12px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 0 20px;
+}
+
+.orb {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 35%,
+    #c8f5ff, #42a8ff 24%,
+    #754bff 55%, #10152a 75%);
+  box-shadow:
+    0 0 35px #347dff80,
+    0 0 85px #6c4aff45,
+    inset -15px -15px 35px #080b13;
+  animation: breathe 4s ease-in-out infinite;
+  margin: 15px 0 28px;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 35px #347dff80, 0 0 85px #6c4aff45;
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 55px #347dff, 0 0 110px #6c4aff70;
+  }
+}
+
+h1 {
+  font-size: 27px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: #8494ac;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+#chat {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.message {
+  padding: 15px 17px;
+  border-radius: 15px;
+  max-width: 85%;
+  line-height: 1.6;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.henry {
+  background: #141d2c;
+  align-self: flex-start;
+  border: 1px solid #25364c;
+}
+
+.user {
+  background: #173b63;
+  align-self: flex-end;
+}
+
+.controls {
+  width: 100%;
+  max-width: 720px;
+  margin: 20px auto 0;
+}
+
+.shortcuts {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.shortcuts button {
+  background: #111a29;
+  border: 1px solid #283a50;
+  color: #a9c9e8;
+  border-radius: 20px;
+  padding: 9px 13px;
+  font-size: 12px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  background: #111a29;
+  padding: 9px;
+  border: 1px solid #30415a;
+  border-radius: 16px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.send {
+  border: none;
+  background: #398bff;
+  color: white;
+  border-radius: 11px;
+  padding: 10px 17px;
+}
+
+footer {
+  text-align: center;
+  color: #53647c;
+  font-size: 11px;
+  padding: 22px 0 5px;
+}
+
+@media(max-width:600px) {
+  .app { padding: 15px; }
+  .orb { width: 125px; height: 125px; }
+  h1 { font-size: 23px; }
+  .message { max-width: 92%; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <div class="logo">HENRY</div>
+  <div class="status">● SYSTEM INITIALIZED</div>
+</header>
+
+<main>
+  <div class="orb"></div>
+
+  <h1>HELLO, STEVE.</h1>
+  <p class="subtitle">
+    Personal Intelligence System · Version 0.1
+  </p>
+
+  <section id="chat">
+    <div class="message henry">
+      Hey Steve. I'm Henry.
+
+      My interface is online, and I'm ready to begin.
+      My intelligence engine is not connected yet,
+      but this is the beginning of something interesting.
+    </div>
+  </section>
+</main>
+
+<section class="controls">
+
+  <div class="shortcuts">
+    <button onclick="shortcut('Who are you?')">Who are you?</button>
+    <button onclick="shortcut('What can you do?')">Capabilities</button>
+    <button onclick="shortcut('System status')">System status</button>
+  </div>
+
+  <div class="input-area">
+    <input
+      id="prompt"
+      placeholder="Talk to Henry..."
+      autocomplete="off"
+    >
+    <button class="send" onclick="sendMessage()">Send</button>
+  </div>
+
+</section>
+
+<footer>
+  PROJECT HENRY · PERSONAL AI INITIATIVE
+  <br>DEVELOPMENT BUILD 001
+</footer>
+
+</div>
+
+<script>
+const chat = document.getElementById("chat");
+const input = document.getElementById("prompt");
+
+function addMessage(text, type) {
+  const message = document.createElement("div");
+  message.className = "message " + type;
+  message.textContent = text;
+  chat.appendChild(message);
+  message.scrollIntoView({ behavior: "smooth" });
+}
+
+function sendMessage() {
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  // Temporary prototype response.
+  // Real AI integration comes in the next phase.
+  setTimeout(() => {
+    addMessage(
+      "I received your message, Steve. My AI reasoning engine is not connected yet. That is one of our next development milestones.",
+      "henry"
+    );
+  }, 500);
+}
+
+function shortcut(text) {
+  input.value = text;
+  sendMessage();
+}
+
+input.addEventListener("keydown", event => {
+  if (event.key === "Enter") sendMessage();
+});
+</script>
+
+</body>
+</html>
